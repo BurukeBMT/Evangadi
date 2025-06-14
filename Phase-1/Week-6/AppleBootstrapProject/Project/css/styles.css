@@ -1,0 +1,242 @@
+/* General Styling */
+body {
+  font-family: "Montserrat", sans-serif; /* Set main font for the page */
+}
+a {
+  color: #06c; /* Set default link color */
+}
+img {
+  max-width: 100%; /* Make images responsive */
+}
+.top-100 {
+  margin-top: 100px; /* Add top margin */
+}
+
+/* Header Style */
+.main-nav {
+  /* Style navigation bar background and font */
+  background: rgba(0, 0, 0, 0.8);
+  font-size: 0.85em;
+  font-weight: 200;
+}
+.main-nav ul li a {
+  color: #fff; /* Set nav link color to white */
+}
+.navbar-toggler {
+  color: #fff; /* Style mobile nav toggle button */
+}
+.nav-item {
+  /* Style nav items: align left, add padding and border */
+  text-align: start !important;
+  padding: 4px 0;
+  border-bottom: 1px solid #4b4b4b;
+}
+
+/* First image section */
+.buy-links ul li a:after {
+  /* Add FontAwesome right arrow after buy links */
+  font-family: "FontAwesome";
+  font-weight: 900;
+  content: "\f105";
+  padding-inline-start: 10px;
+}
+.buy-links ul li {
+  display: flex;           /* Arrange child links in a row */
+  gap: 15px;               /* Space between links */
+  align-items: center;     /* Vertically center the links */
+}
+.buy-links ul li a {
+  display: inline-block;   /* Make links sit next to each other */
+}.buy-links ul li {
+  display: flex;           /* Arrange child links in a row */
+  gap: 15px;               /* Space between links */
+  align-items: center;     /* Vertically center the links */
+}
+.buy-links ul li a {
+  display: inline-block;   /* Make links sit next to each other */
+}
+.buy-links ul {
+  list-style: none; /* Remove list bullets from buy links */
+}
+.buy-links ul li a:hover {
+  color: #000; /* Change buy link color on hover */
+}
+.buy-links ul li a {
+  /* Set buy link color and remove underline */
+  color: #06c;
+  text-decoration: none;
+}
+
+/* Second section */
+.second-section {
+  /* Set background image and text color */
+  background-image: url("../images/home/iphone11-pro-bg.jpg");
+  color: #fff;
+}
+.bgimage {
+  /* Style for sections with background images */
+  min-height: 580px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.mac {
+  background: #fafafa; /* Set Mac section background color */
+}
+
+/* Third section */
+.third-section {
+  background-image: url("../images/home/iphone11-bg.jpg"); /* Set background image for third section */
+}
+
+/* Fourth section */
+.fourth-section .left-side-wrapper {
+  background-image: url("../images/home/watch-series-5.jpg"); /* Set background for left side */
+}
+.fourth-section .right-side-wrapper {
+  background-image: url("../images/home/apple-card.jpg"); /* Set background for right side */
+}
+
+/* Fifth section */
+.fifth-sction .left-side-wrapper {
+  background-image: url("../images/home/apple-tv-background.jpg"); /* Set background for left side */
+}
+.watch-more-wrapper a:after {
+  /* Add FontAwesome play icon after watch more links */
+  font-family: "FontAwesome";
+  font-weight: 900;
+  content: "\f144";
+  padding-inline-start: 15px;
+}
+.fifth-sction .right-side-wrapper {
+  /* Set background and text color for right side */
+  background-image: url("../images/home/air-pods.jpg");
+  color: #fff;
+  background-size: initial;
+  background-color: #000;
+  background-position: bottom;
+}
+
+/* Sixth section */
+.sixth-section .right-side-wrapper {
+  background-image: url("../images/home/new-ipad.jpg"); /* Set background for right side */
+}
+
+/* Footer Styling */
+.footer-wrapper {
+  /* Set footer background and text color */
+  background-color: #f5f5f7;
+  color: #86868b;
+  font-size: 0.7em;
+}
+.footer-wrapper ul {
+  /* Remove list bullets and add padding */
+  list-style: none;
+  padding-bottom: 10px;
+  padding-inline-start: 0px;
+}
+.footer-wrapper ul a {
+  /* Set footer link color and remove underline */
+  color: #515154;
+  text-decoration: none;
+}
+.my-apple-wrapper {
+  /* Add padding and margin to My Apple section */
+  padding-bottom: 15px;
+  margin-top: 10px;
+}
+.copyright {
+  margin-top: 15px; /* Add top margin to copyright */
+}
+.footer-country {
+  margin-top: 8px; /* Add top margin to country section */
+}
+.flag-wrapper {
+  /* Style flag icon in footer */
+  display: inline-block;
+  vertical-align: middle;
+  padding-right: 5px;
+}
+.footer-country-name {
+  /* Align country name with flag */
+  display: inline-block;
+  vertical-align: middle;
+}
+.footer-links-terms ul {
+  display: flex; /* Display terms links in a row */
+}
+.footer-links-terms ul li {
+  /* Add padding and border to terms links */
+  padding: 0 5px;
+  border-right: 1px solid #d2d2d7;
+}
+.footer-links-terms ul li:first-child {
+  padding-left: 0; /* Remove left padding for first term */
+}
+.footer-links-terms ul li:last-child {
+  border-right: 0; /* Remove border for last term */
+}
+.footer-links-wrapper h3 {
+  /* Style footer section headings */
+  font-size: 12px;
+  font-weight: 600;
+  color: #1d1d1f;
+}
+.footer-wrapper ul li {
+  padding: 4px 0; /* Add vertical padding to footer list items */
+}
+.upper-text-container {
+  /* Style upper text container in footer */
+  border-bottom: 1px solid #d2d2d7;
+  padding: 17px 0 10px;
+  margin-bottom: 20px;
+}
+.upper-text-container a {
+  color: #515154; /* Set color for links in upper text */
+}
+
+/* Media Query: Footer for small screens */
+@media (max-width: 768px) {
+  .footer-links-wrapper ul {
+    display: none; /* Hide footer links on small screens */
+  }
+  .footer-links-wrapper h3 {
+    /* Add padding and border to headings */
+    padding: 10px 0;
+    border-bottom: 1px solid #ccc;
+  }
+  .footer-links-wrapper h3:after {
+    /* Add plus icon after headings */
+    font-family: "FontAwesome";
+    content: "\f067";
+    padding-inline-start: 10px;
+    position: absolute;
+    right: 25px;
+  }
+}
+
+/* Media Query: Navbar and footer for medium screens */
+@media (min-width: 768px) {
+  .nav-item {
+    /* Center nav items and remove border/padding */
+    text-align: center !important;
+    padding: 0;
+    border-bottom: 0px;
+  }
+  .my-apple-wrapper {
+    border-bottom: 1px solid #d2d2d7; /* Add border to My Apple section */
+  }
+}
+
+/* Media Query: Footer for large screens */
+@media (min-width: 992px) {
+  .copyright {
+    margin-top: 10px; /* Adjust copyright margin */
+  }
+  .footer-country {
+    margin-top: 10px; /* Adjust country margin */
+  }
+  .footer-links-terms {
+    margin-top: 10px; /* Adjust terms margin */
+  }
+}

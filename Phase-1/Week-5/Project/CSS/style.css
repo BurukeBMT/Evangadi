@@ -1,0 +1,79 @@
+/* General Reset: Remove default margin and padding from all elements */
+* {
+  margin: 0;
+  padding: 0;
+}
+/* Styling for images */
+img {
+  width: 100%;
+  display: block;
+}
+/* Body styling */
+body {
+  font-size: 3.5vw; /* Responsive font size */
+  text-align: center;
+}
+/* Background and text color for elements with the 'bg-blue' class  */
+.bg-blue {
+  background-color: #195774;
+  color: antiquewhite;
+}
+/* Header section padding */
+.header {
+  padding: 2% 0 3%; /* Top padding 2%, right and left 0, bottom padding 3% */
+}
+main {
+  margin: 4% 5% 5%;
+}
+.margin-bottom {
+  margin-bottom: 7%; /* Adds 7% bottom margin */
+}
+.missing-puppy {
+  display: none; /* Hide element from display */
+}
+footer {
+  padding: 4% 0 5%;
+}
+/* Footer heading font size */
+footer h2 {
+  font-size: 4vw; /* Responsive font size */
+}
+
+/* Responsive styles for screens wider than 768px */
+@media (min-width: 768px) {
+  header h2 {
+    font-size: 5vw; /* Larger responsive font size for header h2 */
+  }
+  /* Center and adjust main content width */
+  main {
+    width: 80%; /* Set main content width to 80% of container */
+    margin: 0 auto; /* Center main content horizontally */
+  }
+  main section {
+    display: flex; /* Use flexbox for layout */
+    justify-content: space-between; /* Distribute space evenly between child elements */
+  }
+  .three-puppies {
+    margin-block: 4%; /* Vertical margin (top and bottom) of 4% */
+  }
+  /* Styling for divs inside 'three-puppies' */
+  .three-puppies div {
+    margin-bottom: 0%;
+    width: 32%; /* Each div takes 32% width */
+  }
+  /* Styling for the 'missing-puppy' section */
+  .missing-puppy {
+    background-color: #9f3644;
+    display: flex; /* Use flexbox for layout */
+    text-align: center; /* Center text horizontally */
+    justify-content: center; /* Center content horizontally */
+    align-items: center; /* Center content vertically */
+    font-size: 5vw; /* responsive font size */
+  }
+  .more-puppies-text {
+    font-size: 3vw; /* Responsive font size for text */
+  }
+  .two-puppies div {
+    width: 48%;
+  }
+}

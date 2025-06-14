@@ -1,0 +1,46 @@
+body {
+  margin: 100px;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+}
+
+.container {
+  display: flex;
+  gap: 30px;
+  background-color: lightgray;
+  padding: 40px;
+}
+
+.box {
+  width: 100px;
+  height: 100px;
+  border: 5px solid white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Arial, sans-serif;
+}
+
+.outer-green {
+  background-color: green;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.inner-yellow {
+  width: 60px;
+  height: 60px;
+  background-color: yellow;
+}
+
+.yellow-box {
+  background-color: goldenrod;
+}
+
+.red-box {
+  background-color: firebrick;
+  color: black;
+}

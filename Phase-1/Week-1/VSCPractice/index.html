@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!-- or "fr", "am", etc., depending on the language -->
+  <head>
+    <!-- Contains metadata and links -->
+    <title>All HTML Tags Example</title>
+    <!-- Title shown in browser tab -->
+    <meta charset="UTF-8" />
+    <!-- Metadata about character encoding -->
+    <meta name="description" content="A sample page using all HTML tags" />
+    <!-- Page description -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <!-- Link to external CSS -->
+    <style>
+      body {
+        font-family: Cambria;
+      } /* Internal CSS style */
+    </style>
+  </head>
+
+  <body>
+    <!-- Main content of the HTML document -->
+
+    <header>
+      <!-- Website header section -->
+      <h1>Main Heading</h1>
+      <!-- Top level heading -->
+      <nav>
+        <!-- Navigation menu -->
+        <a href="#section1">Go to Section 1</a>
+        <!-- Anchor link -->
+        <a href="#section2">Go to Section 2</a>
+      </nav>
+    </header>
+
+    <section id="section1">
+      <!-- Section of the page -->
+      <h2>Introduction</h2>
+      <!-- Subheading -->
+      <p>This is a paragraph of text.</p>
+      <!-- Paragraph -->
+      <br />
+      <!-- Line break -->
+      <hr />
+      <!-- Horizontal rule / divider -->
+      <div>
+        <!-- Generic container -->
+        <h3>Formatting Tags</h3>
+        <p>
+          <b>Bold</b>, <strong>Strong</strong>, <em>Emphasized</em>,
+          <mark>marked</mark>, <i>italic</i>, <small>Small Text</small>,
+          H<sup>2</sup>O, H<sub>2</sub>O
+        </p>
+        <!-- Uses bold, strong, emphasis, small, and superscript -->
+        <center>This text is centered (deprecated but shown here)</center>
+        <!-- Center tag (not recommended) -->
+      </div>
+    </section>
+
+    <section id="section2">
+      <h2>Forms</h2>
+      <form action="#">
+        <!-- Form start -->
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" />
+        <!-- Input field -->
+        <br /><br />
+        <label for="message">Message:</label>
+        <textarea id="message" name="message"></textarea>
+        <!-- Text area -->
+        <br /><br />
+        <button type="submit">Send</button>
+        <!-- Button -->
+      </form>
+    </section>
+
+    <section>
+      <h2>Lists</h2>
+      <h3>Unordered List</h3>
+      <ul>
+        <!-- Unordered list -->
+        <li>Item One</li>
+        <!-- List item -->
+        <li>Item Two</li>
+      </ul>
+
+      <h3>Ordered List</h3>
+      <ol>
+        <!-- Ordered list -->
+        <li>First</li>
+        <li>Second</li>
+      </ol>
+      <dl>
+        <dt>Coffee</dt>
+        <dd>Black Hot drink</dd>
+        <dt>Milk</dt>
+        <dd>White hot drink</dd>
+      </dl>
+    </section>
+
+    <section>
+      <h2>Embedded Content</h2>
+      <img src="image.jpg" alt="Example Image" />
+      <!-- Embedded image -->
+      <br />
+      <video controls width="320">
+        <!-- Video content -->
+        <source src="movie.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+      <br />
+      <iframe
+        src="https://evangadi.com/"
+        width="600"
+        height="200"
+        title="Embedded Example Site"
+      ></iframe>
+    </section>
+
+    <section>
+      <h2>Script Tag</h2>
+      <script>
+        console.log("This is a JavaScript script"); // JS script inside HTML
+      </script>
+    </section>
+
+    <footer>
+      <!-- Footer of the page -->
+      <p>&copy; 2025 All Rights Reserved.</p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,93 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #ffffff;
+}
+
+/* Header */
+.header {
+  background-color: #1a3c6d;
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+
+/* Banner Image Section */
+.main-image img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+}
+
+/* Three-Column Section */
+.three-column {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding: 30px 0;
+  background-color: #fff;
+}
+
+.column {
+  width: 200px;
+  height: 200px;
+  background-color: #e0e0e0;
+}
+
+.column img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Highlight Column */
+.highlight {
+  background-color: #ff1493;
+  color: black;
+  font-size: 1.5em;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+/* More Puppies Section */
+.two-column {
+  padding: 30px 0;
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.two-column h2 {
+  text-align: center;
+  font-size: 2em;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.two-column .column {
+  width: 310px;
+  height: 310px;
+}
+
+.two-column .column img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Footer */
+.footer {
+  background-color: #1a3c6d;
+  color: white;
+  text-align: center;
+  padding: 40px;
+}

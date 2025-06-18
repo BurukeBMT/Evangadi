@@ -11,22 +11,33 @@ Pseudocode:
 4. Print the result array.
 */
 
-const getOnlyEvens = (arr) => {
-    const result = [];
-    if (!Array.isArray(arr)) {
-        console.log("Please provide an array.");
-        return;
+// Function to get even numbers at even indexes
+const getOnlyEvens1 = (arr) => {
+    let result = [];
+    if (!Array.isArray(arr)|| !arr.every(item => typeof item === 'number')) {
+        return "Please provide an array.";
     }
-    for (let i = 0; i < arr.length; i++) {
+    for (let i = 0; i < arr.length; i=i+2) {
         if (i % 2 === 0 && arr[i] % 2 === 0) {
             result.push(arr[i]);
         }
     }
     return result;
 };
+
 // Test cases
-// console.log(getOnlyEvens([1, 2, 3, 6, 4, 8])); // [4]
-// console.log(getOnlyEvens([0, 1, 2, 3, 4]));     // [0, 2, 4]
+//console.log(getOnlyEvens1([1, 2, 3, 6, 4, 8])); // [4]
+//console.log(getOnlyEvens1([0, 1, 2, 3, 4]));     // [0, 2, 4]
+
+
+// Alternative function using filter method
+const getOnlyEvens2 = (arr) => {
+  let result = arr.filter((num, index) => index % 2 === 0 && num % 2 === 0);
+  return result;
+}
+// Test cases
+//console.log(getOnlyEvens2([1, 2, 3, 6, 4, 8])); // prints [4]
+//console.log(getOnlyEvens2([0, 1, 2, 3, 4]));    // prints [0, 2, 4]
 
 
 /*
@@ -43,20 +54,27 @@ Pseudocode:
 */
 
 const reverseCompare = (num) => {
-    if (typeof num !== 'number' || num < 10 || num > 99) {
-        console.log("Input is not a valid two-digit number.");
-        return;
+    // Check if input is a valid two-digit number (including negatives)
+    if (typeof num !== 'number' || (Math.abs(num) < 10 || Math.abs(num) > 99)) {
+        return "Input is not a valid two-digit number.";
     }
-    const reversed = parseInt(num.toString().split('').reverse().join(''), 10);
-    if (num > reversed) {
-        return "Ok";
-    } else {
-        return "Not ok";
-    }
+    const reversedDigits = Math.abs(num).toString().split('').reverse().join('');
+    let reversed = parseInt(reversedDigits, 10);
+
+    if (num < 0) reversed *= -1;
+    // Compare and print result
+    if (num > reversed) return "Ok";
+    else return "Not ok";
 };
+
 // Test cases
-console.log(reverseCompare(72)); // Ok
-console.log(reverseCompare(23)); // Not ok
+// console.log(reverseCompare(72)); // Ok
+// console.log(reverseCompare(23)); // Not ok
+// console.log(reverseCompare(21)); // Ok
+// console.log(reverseCompare(12)); // Not ok
+// console.log(reverseCompare(-21));// Not Ok 
+// console.log(reverseCompare(-12));// Ok 
+// console.log(reverseCompare(5));  // Input is not a valid two-digit number.
 
 
 /*
@@ -72,7 +90,19 @@ Pseudocode:
 4. Multiply result by each integer from 1 up to the number.
 5. Return the result.
 */
+//factorial function using recursion
+const factorial= (n) =>{
+  if (n < 0) return "Input must be a non-negative integer.";
+  else if (n === 0 || n === 1) return 1;
+  return n * factorial(n - 1);
+}
 
+// Test cases
+// console.log(factorial(5)); // 120
+// console.log(factorial(6)); // 720
+// console.log(factorial(0)); // 1
+
+//factorial function using iteration
 const returnFactorial = (n) => {
     if (typeof n !== 'number' || n < 0) return "Input must be a non-negative integer.";
 
@@ -84,15 +114,7 @@ const returnFactorial = (n) => {
     return result;
 };
 
-
-const factorial= (n) =>{
-  if (n < 0) return "Input must be a non-negative integer.";
-  else if (n === 0 || n === 1) return 1;
-  return n * factorial(n - 1);
-}
-
 // Test cases
-// console.log(factorial(5)); // 120
 // console.log(returnFactorial(5)); // 120
 // console.log(returnFactorial(6)); // 720
 // console.log(returnFactorial(0)); // 1
@@ -124,6 +146,7 @@ const checkMeera = (arr) => {
     }
     return "I am a Meera array";
 };
+
 // Test cases
 // console.log(checkMeera([10, 4, 0, 5])); // NOT a Meera array
 // console.log(checkMeera([7, 4, 9]));     // Meera array
@@ -144,7 +167,7 @@ Pseudocode:
 */
 const isDual = (arr) => {
     if (!Array.isArray(arr) || arr.length % 2 !== 0) return 0;
-    const count = {};
+    let count = {};
     for (let val of arr) {
         count[val] = (count[val] || 0) + 1;
     }
@@ -153,6 +176,7 @@ const isDual = (arr) => {
     }
     return 1;
 };
+
 // Test cases
 // console.log(isDual([1, 2, 1, 3, 3, 2])); // 1
 // console.log(isDual([2, 5, 2, 5, 5]));    // 0
@@ -179,6 +203,7 @@ const digitalClock = (seconds) => {
     let secs = seconds % 60;
     return `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
 };
+
 // Test cases
 // console.log(digitalClock(5025));   // 01:23:45
 // console.log(digitalClock(61201));  // 17:00:01

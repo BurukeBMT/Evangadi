@@ -30,7 +30,7 @@ const getOnlyEvens1 = (arr) => {
 //console.log(getOnlyEvens1([0, 1, 2, 3, 4]));     // [0, 2, 4]
 
 
-// Alternative function using filter method
+//Alternative function using filter method
 const getOnlyEvens2 = (arr) => {
   let result = arr.filter((num, index) => index % 2 === 0 && num % 2 === 0);
   return result;
@@ -178,7 +178,7 @@ const isDual = (arr) => {
 };
 
 // Test cases
-// console.log(isDual([1, 2, 1, 3, 3, 2])); // 1
+//console.log(isDual([-1, 2, -1, 3, 3, 2])); // 1
 // console.log(isDual([2, 5, 2, 5, 5]));    // 0
 // console.log(isDual([3, 1, 1, 2, 2]));    // 0
 
@@ -191,20 +191,62 @@ Question 6: Write a function that takes the number of seconds and returns the di
 
 Pseudocode:
 1. Define a function that takes seconds as input.
-2. Calculate hours = (seconds / 3600) % 24
-3. Calculate minutes = (seconds % 3600) / 60
-4. Calculate seconds = seconds % 60
-5. Format hours, minutes, and seconds as two digits.
-6. Return the formatted string "HH:MM:SS"
+2. Validate that the input is a non-negative number.
+3. If seconds is negative, return an error message.
+4. Ensure it's within 24 hours using modulo
+5. Calculate hours = (seconds / 3600) % 24
+6. Calculate minutes = (seconds % 3600) / 60
+7. Calculate seconds = seconds % 60
+8. Format hours, minutes, and seconds as two digits.
+9. Return the formatted string "HH:MM:SS"
 */
+
 const digitalClock = (seconds) => {
+
+    if (typeof seconds !== 'number' || seconds < 0) {
+        return "Please provide a valid number of seconds.";
+    }
+    seconds = seconds % (24 * 3600);  // Normalize seconds to a 24-hour format
+
     let hours = Math.floor(seconds / 3600) % 24;
     let minutes = Math.floor((seconds % 3600) / 60);
     let secs = seconds % 60;
+    
     return `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
 };
 
 // Test cases
-// console.log(digitalClock(5025));   // 01:23:45
-// console.log(digitalClock(61201));  // 17:00:01
-// console.log(digitalClock(87000));  // 00:10:00
+console.log(digitalClock(5025));   // 01:23:45
+console.log(digitalClock(61201));  // 17:00:01
+console.log(digitalClock(87000));  // 00:10:00
+
+
+
+
+
+
+
+
+
+
+
+
+function Clock(seconds) {
+
+     if (typeof seconds !== 'number' || seconds < 0) {
+        return "Please provide a valid number of seconds.";
+    }
+    // Ensure it's within 24 hours using modulo
+    seconds = seconds % (24 * 3600);  // Normalize seconds to a 24-hour format
+
+    const hours = Math.floor(seconds / 3600);
+    const minutes = Math.floor((seconds % 3600) / 60);
+    const secs = seconds % 60;
+
+    // Format to always have 2 digits
+    const hh = String(hours).padStart(2, '0');
+    const mm = String(minutes).padStart(2, '0');
+    const ss = String(secs).padStart(2, '0');
+
+    return `${hh}:${mm}:${ss}`;
+}

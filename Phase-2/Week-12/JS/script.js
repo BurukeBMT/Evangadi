@@ -8,7 +8,7 @@ Question 1: The following three questions are based on the two paragraphs under 
 Hint: Use the "textContent" property to select the content
 */
 
-item=document.getElementById("sample1")
+const item=document.getElementById("sample1")
 console.log(item);
 console.log(item.textContent);
 //console.log(item.innerHTML);
@@ -34,14 +34,14 @@ Question 2: The following questions are based on the HTML code found under the s
 
  */
 
-let techc= document.getElementById("techCompanies")
-console.log(techc);
+let tech1= document.getElementById("techCompanies")
+console.log(tech1);
 
-techco=document.querySelector("#techCompanies ")
-console.log(techco);
+let tech2=document.querySelector("#techCompanies ")
+console.log(tech2);
 
-tech=document.querySelectorAll("#techCompanies li")
-console.log(tech.length);
+let tech3=document.querySelectorAll("#techCompanies li")
+console.log(tech3.length);
 
 let red=document.querySelectorAll(".red");
 console.log(red);

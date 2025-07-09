@@ -112,32 +112,36 @@ by the user on the browser.
 
 $(document).ready(function () {
   $("#userForm").on("submit", function (event) {
-    event.preventDefault(); // Prevent the form from submitting the traditional way
+    event.preventDefault();
 
-    // Get the input values
     let firstName = $("#firstName").val().trim();
     let lastName = $("#lastName").val().trim();
     let email = $("#email").val().trim();
 
-    // Select the error message div and the form
     let errorMessage = $("#errorMessage");
     let form = $("#userForm");
     let userData = $("#userData");
 
-    // Regex for only letters (no numbers or special characters)
     let nameRegex = /^[A-Za-z]+$/;
 
-    // Check if all the fields are filled and names are valid
-    if (firstName === "" || lastName === "" || email === "") {
+    // Clear previous error message
+    errorMessage.text("").hide();
+    // Validate input fields
+    if (firstName === "" && lastName === "" && email === "") {
       errorMessage.text("All fields are required.").show();
-    } else if (!nameRegex.test(firstName) || !nameRegex.test(lastName)) {
-      errorMessage.text("First name and Last name must contain only letters.").show();
+    }else if (firstName === "") {
+      errorMessage.text("First name is required.").show();
+    } else if (!nameRegex.test(firstName)) {
+      errorMessage.text("First name must contain only letters.").show();
+    } else if (lastName === "") {
+      errorMessage.text("Last name is required.").show();
+    } else if (!nameRegex.test(lastName)) {
+      errorMessage.text("Last name must contain only letters.").show();
+    } else if (email === "") {
+      errorMessage.text("Email address is required.").show();
     } else {
-      // Hide the form and the error message
       errorMessage.hide();
       form.hide();
-
-      // Display the user data
       userData.show();
       userData.html(`
         <h3>Thank you for registering!</h3>

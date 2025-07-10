@@ -16,6 +16,56 @@ $(window).resize(function(){
 })
 
 
+$(document).ready(function () {
+  function isMobile() {
+    return $(window).width() < 768;
+  }
+
+  // Add + sign to each h3 if not already present
+  $(".footer-links-wrapper h3").each(function () {
+    if ($(this).find('.toggle-icon').length === 0) {
+      $(this).append('<span class="toggle-icon" style="float:right;cursor:pointer;">+</span>');
+    }
+  });
+
+  // Hide all sub-links on mobile by default
+  function hideFooterLinksOnMobile() {
+    if (isMobile()) {
+      $(".footer-links-wrapper ul").hide();
+      $(".footer-links-wrapper h3 .toggle-icon").text('+');
+      $(".footer-links-wrapper h3").removeClass("expanded");
+    } else {
+      $(".footer-links-wrapper ul").show();
+      $(".footer-links-wrapper h3 .toggle-icon").text('');
+      $(".footer-links-wrapper h3").removeClass("expanded");
+    }
+  }
+
+  hideFooterLinksOnMobile();
+
+  // Toggle sub-links and icon on click (only on mobile)
+  $(".footer-links-wrapper h3").on("click", function (e) {
+    if (!isMobile()) return;
+    var $icon = $(this).find('.toggle-icon');
+    var $ul = $(this).next("ul");
+    if ($ul.is(":visible")) {
+      $ul.slideUp();
+      $icon.text('+');
+      $(this).removeClass("expanded");
+    } else {
+      $ul.slideDown();
+      $icon.text('×');
+      $(this).addClass("expanded");
+    }
+  });
+
+  // On window resize, update footer links visibility and icons
+  $(window).resize(function () {
+    hideFooterLinksOnMobile();
+  });
+});
+
+
 // <!DOCTYPE html>
 // <html lang="en">
 //   <head>

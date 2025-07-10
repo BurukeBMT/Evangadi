@@ -28,7 +28,6 @@ $(document).ready(function () {
     }
   });
 
-  // Hide all sub-links on mobile by default
   function hideFooterLinksOnMobile() {
     if (isMobile()) {
       $(".footer-links-wrapper ul").hide();
@@ -44,7 +43,7 @@ $(document).ready(function () {
   hideFooterLinksOnMobile();
 
   // Toggle sub-links and icon on click (only on mobile)
-  $(".footer-links-wrapper h3").on("click", function (e) {
+  $(".footer-links-wrapper h3").on("click", function () {
     if (!isMobile()) return;
     var $icon = $(this).find('.toggle-icon');
     var $ul = $(this).next("ul");
@@ -59,42 +58,5 @@ $(document).ready(function () {
     }
   });
 
-  // On window resize, update footer links visibility and icons
-  $(window).resize(function () {
-    hideFooterLinksOnMobile();
-  });
+  $(window).resize(hideFooterLinksOnMobile);
 });
-
-
-// <!DOCTYPE html>
-// <html lang="en">
-//   <head>
-//     <meta charset="UTF-8" />
-//     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-//     <title>Document</title>
-//   </head>
-//   <body>
-//     <h1>choose your skill</h1>
-//     <select onchange="handleChanges">
-//       <option value="medical">medical</option>
-//       <option value="farming">farming</option>
-//     </select>
-//     <div id="expWrapper"></div>
-//     <script>
-//       let handleChanges = (event) => {
-//         let value = event.target.value;
-//         console.log(event);
-//         // conditionalyy render to expWrapper
-//         let expWrapper = document.getElementById("expWrapper");
-//         let farming = `<div>
-// <input id='exper' />
-// </div>`;
-//         let medical = `<div>
-// <input id='exper' />
-// </div>`;
-//         if (value == "medical") expWrapper.innerHTML = medical;
-//         else expWrapper.innerHTML = farming;
-//       };
-//     </script>
-//   </body>
-// </html>

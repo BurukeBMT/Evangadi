@@ -2,8 +2,9 @@
 $(".footer-links-wrapper h3").on("click",function () {
   if ($(window).width()<768){
   $(this).toggleClass("expanded");
-  $(this).next("ul").slideToggle()}
+  $(this).next("ul").slideToggle(1000)}
 })
+
 $(window).resize(function(){
   if ($(window).width()>768){
     $(".footer-links-wrapper ul").show()
@@ -11,11 +12,30 @@ $(window).resize(function(){
   }
   else{
     $(".footer-links-wrapper ul").hide();
-    
   }
 })
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
 $(document).ready(function () {
   function isMobile() {
     return $(window).width() < 768;
@@ -60,3 +80,4 @@ $(document).ready(function () {
 
   $(window).resize(hideFooterLinksOnMobile);
 });
+*/

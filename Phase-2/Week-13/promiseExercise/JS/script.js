@@ -79,50 +79,40 @@ promise2
       }
     });
   }
-
   let promise3 = job(true);
-
   promise3
 
     .then(function (data) {
       console.log(data);     //sucess
-
       return job(true);
     })
 
     .then(function (data) {
-      if (data !== "victory") {
-        throw "Defeat";
-      }
-
+      if (data !== "victory") throw "Defeat";
       return job(true);
     })
 
     .then(function (data) {
-      console.log(data);
+      console.log(data); //skipped
     })
 
     .catch(function (error) {
       console.log(error); // defeat 
-
       return job(false);
     })
 
-    .then(function (data) {
+    .then(function (data) { //error
       console.log(data);
-
       return job(true);
     })
 
     .catch(function (error) {
       console.log(error);    //ERROR
-
       return "Error caught";
     })
 
     .then(function (data) {
       console.log(data); // erorr caught
-
       return new Error("test");
     })
 
@@ -131,5 +121,5 @@ promise2
     })
 
     .catch(function (data) {
-      console.log("Error:", data.message);
+      console.log("Error:", data.message); // skipped
     });

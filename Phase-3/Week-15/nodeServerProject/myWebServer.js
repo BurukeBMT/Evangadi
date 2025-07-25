@@ -9,20 +9,20 @@ d. Run your "myWebServer" module on your terminal and go to your browser and typ
 
 // Import the http module to create a server
 
-const http = require('http');
+// const http = require('http');
 
-// Create the server and define a callback for handling incoming requests
-const server = http.createServer((req, res) => {
-  // Set the HTTP response headers
-  res.writeHead(200, { 'Content-Type': 'text/plain' });
+// // Create the server and define a callback for handling incoming requests
+// const server = http.createServer((req, res) => {
+//   // Set the HTTP response headers
+//   res.writeHead(200, { 'Content-Type': 'text/plain' });
 
-  // Send the response text to the client (browser)
-  res.end('Request received and processed');
-});
+//   // Send the response text to the client (browser)
+//   res.end('Request received and processed');
+// });
 
-server.listen(1234, function () {
-  console.log("Server running on port 1234"); // Log message to confirm the server is running
-});
+// server.listen(1234, function () {
+//   console.log("Server running on port 1234"); // Log message to confirm the server is running
+// });
 
 /*
 7. Inside your "myWebServer" module
@@ -31,24 +31,25 @@ a. Import your "randomNumber" module inside of your "myWebServer" module. Now, g
 ■ Go to your browser and type “localhost:1234” to see the random number generated
 */ 
 
-// // Import the randomNumber module
-// const randomNumber = require('./randomNumber');
+// Import the randomNumber module
+const randomNumber = require('./randomNumber');
 
-// // Create the server
-// const server = http.createServer((req, res) => {
-//   // Generate a random number using the random function from the randomNumber module
-//   const randomValue = randomNumber.random();
 
-//   // Set the HTTP response headers
-//   res.writeHead(200, { 'Content-Type': 'text/plain' });
+// Create the server
+const server = http.createServer((req, res) => {
+  // Generate a random number using the random function from the randomNumber module
+  const randomValue = randomNumber.random();
 
-//   // Send the random number as the response to the client (browser)
-//   res.end(`Random number generated: ${randomValue}`);
-// });
-// // Make the server listen on port 1234
-// server.listen(1234, () => {
-//   console.log('Server running on port 1234');
-// });
+  // Set the HTTP response headers
+  res.writeHead(200, { 'Content-Type': 'text/plain' });
+
+  // Send the random number as the response to the client (browser)
+  res.end(`Random number generated: ${randomValue}`);
+});
+// Make the server listen on port 1234
+server.listen(1234, () => {
+  console.log('Server running on port 1234');
+});
 
 /*
  8. Create a new folder called "static"

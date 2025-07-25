@@ -11,18 +11,18 @@ d. Run your "myWebServer" module on your terminal and go to your browser and typ
 
 const http = require('http');
 
-// // Create the server and define a callback for handling incoming requests
-// const server = http.createServer((req, res) => {
-//   // Set the HTTP response headers
-//   res.writeHead(200, { 'Content-Type': 'text/plain' });
+// Create the server and define a callback for handling incoming requests
+const server = http.createServer((req, res) => {
+  // Set the HTTP response headers
+  res.writeHead(200, { 'Content-Type': 'text/plain' });
 
-//   // Send the response text to the client (browser)
-//   res.end('Request received and processed');
-// });
+  // Send the response text to the client (browser)
+  res.end('Request received and processed');
+});
 
-// server.listen(1234, function () {
-//   console.log("Server running on port 1234"); // Log message to confirm the server is running
-// });
+server.listen(1234, function () {
+  console.log("Server running on port 1234"); // Log message to confirm the server is running
+});
 
 /*
 7. Inside your "myWebServer" module
@@ -60,35 +60,35 @@ d. Don’t forget to run your module on your terminal to keep your server runnin
 e. Now, modify your listener function in a way that it serves any of the pages inside of your "static" folder when requested
 */
 
-const fs = require("fs");
-const path = require('path');
-// Install mime-types to get access called lookup
-const mimetypelookup = require("mime-types").lookup;
+// const fs = require("fs");
+// const path = require('path');
+// // Install mime-types to get access called lookup
+// const mimetypelookup = require("mime-types").lookup;
 
-// Create the Server Object
-const server = http.createServer(function (req, res) {
+// // Create the Server Object
+// const server = http.createServer(function (req, res) {
 
-filePath = req.url
-  if (filePath =="/" ){
-    filePath = "/index.html";
-  }
-    var requestedFile = path.join(__dirname + "/static/apple-html-css-replica/", filePath);
+// filePath = req.url
+//   if (filePath =="/" ){
+//     filePath = "/index.html";
+//   }
+//     var requestedFile = path.join(__dirname + "/static/apple-html-css-replica/", filePath);
     
-    const readFile = fs.readFile(requestedFile, function (err, content) {
-      if (err) {
-         res.writeHead(404, { "Content-Type": "text/html" });
-         res.end("<h1>404 Not Found</h1>");;
+//     const readFile = fs.readFile(requestedFile, function (err, content) {
+//       if (err) {
+//          res.writeHead(404, { "Content-Type": "text/html" });
+//          res.end("<h1>404 Not Found</h1>");;
         
-      } else {
-        let mime = mimetypelookup(filePath);
-        res.writeHead(200, { "content-type": mime });
-        res.end(content);
-      }
-    });
-});
-server.listen(1234, () => {
-  console.log('Server running on port 1234');
-});
+//       } else {
+//         let mime = mimetypelookup(filePath);
+//         res.writeHead(200, { "content-type": mime });
+//         res.end(content);
+//       }
+//     });
+// });
+// server.listen(1234, () => {
+//   console.log('Server running on port 1234');
+// });
 
 // const fs = require('fs');
 // const path = require('path');

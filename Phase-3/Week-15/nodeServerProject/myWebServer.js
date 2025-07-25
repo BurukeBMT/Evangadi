@@ -9,20 +9,20 @@ d. Run your "myWebServer" module on your terminal and go to your browser and typ
 
 // Import the http module to create a server
 
-// const http = require('http');
+const http = require('http');
 
-// // Create the server and define a callback for handling incoming requests
-// const server = http.createServer((req, res) => {
-//   // Set the HTTP response headers
-//   res.writeHead(200, { 'Content-Type': 'text/plain' });
+// Create the server and define a callback for handling incoming requests
+const server1 = http.createServer((req, res) => {
+  // Set the HTTP response headers
+  res.writeHead(200, { 'Content-Type': 'text/plain' });
 
-//   // Send the response text to the client (browser)
-//   res.end('Request received and processed');
-// });
+  // Send the response text to the client (browser)
+  res.end('Request received and processed');
+});
 
-// server.listen(1234, function () {
-//   console.log("Server running on port 1234"); // Log message to confirm the server is running
-// });
+server1.listen(1234, function () {
+  console.log("Server running on port 1234"); // Log message to confirm the server is running
+});
 
 /*
 7. Inside your "myWebServer" module
@@ -36,7 +36,7 @@ const randomNumber = require('./randomNumber');
 
 
 // Create the server
-const server = http.createServer((req, res) => {
+const server2 = http.createServer((req, res) => {
   // Generate a random number using the random function from the randomNumber module
   const randomValue = randomNumber.random();
 
@@ -47,7 +47,7 @@ const server = http.createServer((req, res) => {
   res.end(`Random number generated: ${randomValue}`);
 });
 // Make the server listen on port 1234
-server.listen(1234, () => {
+server2.listen(1234, () => {
   console.log('Server running on port 1234');
 });
 
@@ -61,64 +61,65 @@ d. Don’t forget to run your module on your terminal to keep your server runnin
 e. Now, modify your listener function in a way that it serves any of the pages inside of your "static" folder when requested
 */
 
-// const fs = require("fs");
-// const path = require('path');
-// // Install mime-types to get access called lookup
-// const mimetypelookup = require("mime-types").lookup;
+const fs = require("fs");
+const path = require('path');
+// Install mime-types to get access called lookup
+const mimetypelookup = require("mime-types").lookup;
 
-// // Create the Server Object
-// const server = http.createServer(function (req, res) {
+// Create the Server Object
+const server3 = http.createServer(function (req, res) {
 
-// filePath = req.url
-//   if (filePath =="/" ){
-//     filePath = "/index.html";
-//   }
-//     var requestedFile = path.join(__dirname + "/static/apple-html-css-replica/", filePath);
+filePath = req.url
+  if (filePath =="/" ){
+    filePath = "/index.html";
+  }
+    var requestedFile = path.join(__dirname + "/static/apple-html-css-replica/", filePath);
     
-//     const readFile = fs.readFile(requestedFile, function (err, content) {
-//       if (err) {
-//          res.writeHead(404, { "Content-Type": "text/html" });
-//          res.end("<h1>404 Not Found</h1>");;
+    const readFile = fs.readFile(requestedFile, function (err, content) {
+      if (err) {
+         res.writeHead(404, { "Content-Type": "text/html" });
+         res.end("<h1>404 Not Found</h1>");;
         
-//       } else {
-//         let mime = mimetypelookup(filePath);
-//         res.writeHead(200, { "content-type": mime });
-//         res.end(content);
-//       }
-//     });
-// });
-// server.listen(1234, () => {
-//   console.log('Server running on port 1234');
-// });
+      } else {
+        let mime = mimetypelookup(filePath);
+        res.writeHead(200, { "content-type": mime });
+        res.end(content);
+      }
+    });
+});
+server3.listen(1234, () => {
+  console.log('Server running on port 1234');
+});
 
-// const fs = require('fs');
-// const path = require('path');
+const fs = require('fs');
+const path = require('path');
 
-// // Create the HTTP server
-// const server = http.createServer(function (req, res) {
-//   // Only serve about.html for / or /about.html
-//   if (req.url === '/' || req.url === '/index.html') {
-//     const filePath = path.join(__dirname , '/static/apple-html-css-replica/', 'index.html');
+// Create the HTTP server
+const server4 = http.createServer(function (req, res) {
+  // Only serve about.html for / or /about.html
+  if (req.url === '/' || req.url === '/index.html') {
+    const filePath = path.join(__dirname , '/static/apple-html-css-replica/', 'index.html');
 
-//     fs.readFile(filePath, function (err, content) {
-//       if (err) {
-//         // File read failed
-//         res.writeHead(500, { 'Content-Type': 'text/html' });
-//         res.end('<h1>500 Internal Server Error</h1>');
-//       } else {
-//         // Serve about.html
-//         res.writeHead(200, { 'Content-Type': 'text/html' });
-//         res.end(content);
-//       }
-//     });
-//   } else {
-//     // Any other URL returns 404
-//     res.writeHead(404, { 'Content-Type': 'text/html' });
-//     res.end('<h1>404 Not Found</h1>');
-//   }
-// });
+    fs.readFile(filePath, function (err, content) {
+      if (err) {
+        // File read failed
+        res.writeHead(500, { 'Content-Type': 'text/html' });
+        res.end('<h1>500 Internal Server Error</h1>');
+      } else {
+        // Serve about.html
+        res.writeHead(200, { 'Content-Type': 'text/html' });
+        res.end(content);
+      }
+    });
+  } else {
+    // Any other URL returns 404
+    res.writeHead(404, { 'Content-Type': 'text/html' });
+    res.end('<h1>404 Not Found</h1>');
+  }
+});
 
-// // Start the server
-// server.listen(1234, () => {
-//   console.log('Server running on port 1234');
-// });
+// Start the server
+server4.listen(1234, () => {
+  console.log('Server running on port 1234');
+});
+// Export the server so it can be used in other modules

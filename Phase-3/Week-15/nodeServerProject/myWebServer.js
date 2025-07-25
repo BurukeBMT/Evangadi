@@ -8,7 +8,6 @@ d. Run your "myWebServer" module on your terminal and go to your browser and typ
 */
 
 // Import the http module to create a server
-
 const http = require('http');
 
 // Create the server and define a callback for handling incoming requests

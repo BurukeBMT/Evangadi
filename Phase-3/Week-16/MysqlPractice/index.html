@@ -1,38 +1,143 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Product</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Product</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #000000;
+      color: #ffffff;
+    }
+    .form-container {
+      opacity: 0;
+      animation: fadeIn 1s ease-in forwards;
+    }
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+      }
+    }
+    .form-group {
+      margin-bottom: 20px;
+    }
+    label {
+      display: block;
+      margin-bottom: 8px;
+      color: #cccccc;
+      font-size: 1.1em;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #444444;
+      border-radius: 4px;
+      background-color: #1a1a1a;
+      color: #ffffff;
+      transition: all 0.3s ease;
+    }
+    input:focus, textarea:focus {
+      outline: none;
+      border-color: #28a745;
+      box-shadow: 0 0 8px rgba(40, 167, 69, 0.5);
+      transform: scale(1.02);
+    }
+    textarea {
+      resize: vertical;
+    }
+    button {
+      padding: 12px 24px;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 1.1em;
+      transition: all 0.3s ease;
+    }
+    button:hover {
+      background-color: #218838;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 10px rgba(40, 167, 69, 0.4);
+    }
+    button:active {
+      transform: translateY(0);
+      box-shadow: none;
+    }
+  </style>
 </head>
 <body>
-   <h1>Add a New Product</h1>
-  <form action="http://localhost:3000/add-product" method="POST">
-    <label for="product_url">Product URL:</label>
-    <input type="text" id="product_url" name="product_url" required><br><br>
-    
-    <label for="product_name">Product Name:</label>
-    <input type="text" id="product_name" name="product_name" required><br><br>
+  <div class="form-container">
+    <h1>Add New Product</h1>
+    <form action="/add-product" method="POST">
+      <div class="form-group">
+        <label for="product_url">Product URL</label>
+        <input type="text" id="product_url" name="product_url" required>
+      </div>
+      <div class="form-group">
+        <label for="product_name">Product Name</label>
+        <input type="text" id="product_name" name="product_name" required>
+      </div>
+      <div class="form-group">
+        <label for="product_brief_description">Brief Description</label>
+        <input type="text" id="product_brief_description" name="product_brief_description" required>
+      </div>
+      <div class="form-group">
+        <label for="product_description">Full Description</label>
+        <textarea id="product_description" name="product_description" rows="5" required></textarea>
+      </div>
+      <div class="form-group">
+        <label for="product_img">Image URL</label>
+        <input type="text" id="product_img" name="product_img" required>
+      </div>
+      <div class="form-group">
+        <label for="product_link">Product Link</label>
+        <input type="text" id="product_link" name="product_link" required>
+      </div>
+      <div class="form-group">
+        <label for="price">Price</label>
+        <input type="number" id="price" name="price" step="0.01" required>
+      </div>
+      <div class="form-group">
+        <label for="price_range">Price Range</label>
+        <input type="text" id="price_range" name="price_range" required>
+      </div>
+      <button type="submit">Add Product</button>
+    </form>
+  </div>
 
-    <label for="product_brief_description">Brief Description:</label>
-    <input type="text" id="product_brief_description" name="product_brief_description"><br><br>
+  <script>
+    document.querySelector('form').addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const form = event.target;
+      const formData = new FormData(form);
+      const data = Object.fromEntries(formData);
 
-    <label for="product_description">Description:</label>
-    <input type="text" id="product_description" name="product_description"><br><br>
+      try {
+        const response = await fetch('/add-product', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data),
+        });
 
-    <label for="product_img">Image URL:</label>
-    <input type="text" id="product_img" name="product_img"><br><br>
-
-    <label for="product_link">Product Link:</label>
-    <input type="text" id="product_link" name="product_link"><br><br>
-
-    <label for="price">Price:</label>
-    <input type="number" id="price" name="price" step="0.01"><br><br>
-
-    <label for="price_range">Price Range:</label>
-    <input type="text" id="price_range" name="price_range"><br><br>
-
-    <button type="submit">Add Product</button>
-  </form> 
+        const result = await response.text();
+        if (response.ok) {
+          alert('Product added successfully!');
+          form.reset();
+        } else {
+          alert('Error adding product: ' + result);
+        }
+      } catch (error) {
+        alert('Error adding product: ' + error.message);
+      }
+    });
+  </script>
 </body>
 </html>

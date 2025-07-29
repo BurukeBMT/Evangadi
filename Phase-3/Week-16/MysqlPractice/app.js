@@ -40,120 +40,147 @@ Please find further instructions under the “Instructions for question 2” bel
 */
 
 // Route to create tables when /install is visited
-// This will create all required tables for the apple.com/iphones dynamic page
-app.get("/install", (req, res) => {
-  // SQL queries to create tables one by one
-  const createProductsTable = `
-    CREATE TABLE IF NOT EXISTS products (
-        product_id INT AUTO_INCREMENT PRIMARY KEY,
-        product_url VARCHAR(255) NOT NULL,
-        product_name VARCHAR(255) NOT NULL
-    );
-  `;
-  
-  const createProductDescriptionsTable = `
-    CREATE TABLE IF NOT EXISTS product_descriptions (
-        description_id INT AUTO_INCREMENT PRIMARY KEY,
-        product_id INT,
-        product_brief_description TEXT,
-        product_description TEXT,
-        product_img VARCHAR(255),
-        product_link VARCHAR(255),
-        FOREIGN KEY (product_id) REFERENCES products(product_id)
-    );
-  `;
+// Define SQL queries to create the necessary tables
+const createProductsTable = `
+  CREATE TABLE IF NOT EXISTS products (
+    product_id INT AUTO_INCREMENT PRIMARY KEY,
+    product_url VARCHAR(255) NOT NULL,
+    product_name VARCHAR(255) NOT NULL
+  );
+`;
 
-  const createProductPricingTable = `
-    CREATE TABLE IF NOT EXISTS product_pricing (
-        product_id INT,
-        price DECIMAL(10, 2),
-        price_range VARCHAR(255),
-        FOREIGN KEY (product_id) REFERENCES products(product_id)
-    );
-  `;
+const createProductDescriptionsTable = `
+  CREATE TABLE IF NOT EXISTS product_descriptions (
+    description_id INT AUTO_INCREMENT PRIMARY KEY,
+    product_id INT,
+    product_brief_description TEXT,
+    product_description TEXT,
+    product_img VARCHAR(255),
+    product_link VARCHAR(255),
+    FOREIGN KEY (product_id) REFERENCES products(product_id)
+  );
+`;
 
-  const createProductFeaturesTable = `
-    CREATE TABLE IF NOT EXISTS product_features (
-        feature_id INT AUTO_INCREMENT PRIMARY KEY,
-        product_id INT,
-        feature_name VARCHAR(255),
-        feature_value VARCHAR(255),
-        FOREIGN KEY (product_id) REFERENCES products(product_id)
-    );
-  `;
+const createProductPricingTable = `
+  CREATE TABLE IF NOT EXISTS product_pricing (
+    product_id INT,
+    price DECIMAL(10, 2),
+    price_range VARCHAR(255),
+    FOREIGN KEY (product_id) REFERENCES products(product_id)
+  );
+`;
 
-  const createProductSpecificationsTable = `
-    CREATE TABLE IF NOT EXISTS product_specifications (
-        specification_id INT AUTO_INCREMENT PRIMARY KEY,
-        product_id INT,
-        specification_name VARCHAR(255),
-        specification_value VARCHAR(255),
-        FOREIGN KEY (product_id) REFERENCES products(product_id)
-    );
-  `;
+const createProductFeaturesTable = `
+  CREATE TABLE IF NOT EXISTS product_features (
+    feature_id INT AUTO_INCREMENT PRIMARY KEY,
+    product_id INT,
+    feature_name VARCHAR(255),
+    feature_value VARCHAR(255),
+    FOREIGN KEY (product_id) REFERENCES products(product_id)
+  );
+`;
 
-  // Execute the table creation queries sequentially
-  // Create tables in order, handling errors and sending status messages
-  connection.query(createProductsTable, (err, result) => {
-    if (err) {
-      console.error("Error creating products table:", err.stack);
-      res.send("Error creating products table: " + err.message);
-      return;
-    }
-    console.log("Products table created successfully!");
+const createProductSpecificationsTable = `
+  CREATE TABLE IF NOT EXISTS product_specifications (
+    specification_id INT AUTO_INCREMENT PRIMARY KEY,
+    product_id INT,
+    specification_name VARCHAR(255),
+    specification_value VARCHAR(255),
+    FOREIGN KEY (product_id) REFERENCES products(product_id)
+  );
+`;
+// Additional table creation queries
+const createUsersTable = `
+  CREATE TABLE IF NOT EXISTS users (
+    user_id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(100) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL
+  );
+`;
 
-    connection.query(createProductDescriptionsTable, (err, result) => {
+const createOrdersTable = `
+  CREATE TABLE IF NOT EXISTS orders (
+    order_id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT,
+    product_id INT,
+    order_date DATETIME DEFAULT CURRENT_TIMESTAMP,
+    quantity INT NOT NULL,
+    total_price DECIMAL(10, 2) NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES users(user_id),
+    FOREIGN KEY (product_id) REFERENCES products(product_id)
+  );
+`;
+
+// Function to create tables directly on startup
+function createTablesOnStartup() {
+  const queries = [
+    createProductsTable,
+    createProductDescriptionsTable,
+    createProductPricingTable,
+    createProductFeaturesTable,
+    createProductSpecificationsTable,
+    createUsersTable,
+    createOrdersTable,
+  ];
+
+  queries.forEach((query, index) => {
+    connection.query(query, (err, result) => {
       if (err) {
-        console.error("Error creating product descriptions table:", err.stack);
-        res.send("Error creating product descriptions table: " + err.message);
+        console.error(`Error creating table ${index + 1}:`, err.stack);
         return;
       }
-      console.log("Product Descriptions table created successfully!");
+      console.log(`Table ${index + 1} created successfully!`);
+    });
+  });
+}
 
-      connection.query(createProductPricingTable, (err, result) => {
-        if (err) {
-          console.error("Error creating product pricing table:", err.stack);
-          res.send("Error creating product pricing table: " + err.message);
-          return;
-        }
-        console.log("Product Pricing table created successfully!");
+// Run table creation on startup
+createTablesOnStartup();
 
-        connection.query(createProductFeaturesTable, (err, result) => {
-          if (err) {
-            console.error("Error creating product features table:", err.stack);
-            res.send("Error creating product features table: " + err.message);
-            return;
-          }
-          console.log("Product Features table created successfully!");
+// Route to create tables when /install is visited
+app.get("/install", (req, res) => {
+  const queries = [
+    createProductsTable,
+    createProductDescriptionsTable,
+    createProductPricingTable,
+    createProductFeaturesTable,
+    createProductSpecificationsTable,
+    createUsersTable,
+    createOrdersTable,
+  ];
 
-          connection.query(createProductSpecificationsTable, (err, result) => {
-            if (err) {
-              console.error(
-                "Error creating product specifications table:",
-                err.stack
-              );
-              res.send(
-                "Error creating product specifications table: " + err.message
-              );
-              return;
-            }
-            console.log("Product Specifications table created successfully!");
-            res.send("All tables created successfully!");
-          });
-        });
-      });
+  let tablesCreated = 0;
+
+  queries.forEach((query, index) => {
+    connection.query(query, (err, result) => {
+      if (err) {
+        console.error(`Error creating table ${index + 1}:`, err.stack);
+        res.send(`Error creating table ${index + 1}: ${err.message}`);
+        return;
+      }
+      console.log(`Table ${index + 1} created successfully!`);
+      tablesCreated++;
+      if (tablesCreated === queries.length) {
+        res.send("All tables created successfully!");
+      }
     });
   });
 });
 
-// Start the Express server
+// Enable body parsing and CORS
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(cors());
+
+// Existing routes (e.g., /add-product, /iphones) remain unchanged
+// Add new routes for users and orders if needed
 const PORT = 3000;
 app.listen(PORT, () => {
-  // Display server start message and instructions for table creation
   console.log(
     `Server is running on port ${PORT}. Visit http://localhost:${PORT}/install to create the tables.`
   );
 });
+
 /*
 Question 3: Create an HTML file called, “index.html” with a form to populate the "products" table you created above.
 ● The form on the HTML page should send a POST request to a URL named "/add-product"

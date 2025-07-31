@@ -41,7 +41,7 @@ Please find further instructions under the “Instructions for question 2” bel
 
 // Route to create tables when /install is visited
 // Define SQL queries to create the necessary tables
-const createProductsTable = `
+const productsTable = `
   CREATE TABLE IF NOT EXISTS products (
     product_id INT AUTO_INCREMENT PRIMARY KEY,
     product_url VARCHAR(255) NOT NULL,
@@ -49,7 +49,7 @@ const createProductsTable = `
   );
 `;
 
-const createProductDescriptionsTable = `
+const productDescriptionsTable = `
   CREATE TABLE IF NOT EXISTS product_descriptions (
     description_id INT AUTO_INCREMENT PRIMARY KEY,
     product_id INT,
@@ -61,7 +61,7 @@ const createProductDescriptionsTable = `
   );
 `;
 
-const createProductPricingTable = `
+const productPricingTable = `
   CREATE TABLE IF NOT EXISTS product_pricing (
     product_id INT,
     price DECIMAL(10, 2),
@@ -70,7 +70,7 @@ const createProductPricingTable = `
   );
 `;
 
-const createProductFeaturesTable = `
+const productFeaturesTable = `
   CREATE TABLE IF NOT EXISTS product_features (
     feature_id INT AUTO_INCREMENT PRIMARY KEY,
     product_id INT,
@@ -80,7 +80,7 @@ const createProductFeaturesTable = `
   );
 `;
 
-const createProductSpecificationsTable = `
+const productSpecificationsTable = `
   CREATE TABLE IF NOT EXISTS product_specifications (
     specification_id INT AUTO_INCREMENT PRIMARY KEY,
     product_id INT,
@@ -90,7 +90,7 @@ const createProductSpecificationsTable = `
   );
 `;
 // Additional table creation queries
-const createUsersTable = `
+const usersTable = `
   CREATE TABLE IF NOT EXISTS users (
     user_id INT AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(100) NOT NULL UNIQUE,
@@ -98,7 +98,7 @@ const createUsersTable = `
   );
 `;
 
-const createOrdersTable = `
+const ordersTable = `
   CREATE TABLE IF NOT EXISTS orders (
     order_id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT,
@@ -114,13 +114,13 @@ const createOrdersTable = `
 // Function to create tables directly on startup
 function createTablesOnStartup() {
   const queries = [
-    createProductsTable,
-    createProductDescriptionsTable,
-    createProductPricingTable,
-    createProductFeaturesTable,
-    createProductSpecificationsTable,
-    createUsersTable,
-    createOrdersTable,
+    productsTable,
+    productDescriptionsTable,
+    productPricingTable,
+    productFeaturesTable,
+    productSpecificationsTable,
+    usersTable,
+    ordersTable,
   ];
 
   queries.forEach((query, index) => {
@@ -140,13 +140,13 @@ createTablesOnStartup();
 // Route to create tables when /install is visited
 app.get("/install", (req, res) => {
   const queries = [
-    createProductsTable,
-    createProductDescriptionsTable,
-    createProductPricingTable,
-    createProductFeaturesTable,
-    createProductSpecificationsTable,
-    createUsersTable,
-    createOrdersTable,
+    productsTable,
+    productDescriptionsTable,
+    productPricingTable,
+    productFeaturesTable,
+    productSpecificationsTable,
+    usersTable,
+    ordersTable,
   ];
 
   let tablesCreated = 0;
@@ -262,23 +262,23 @@ app.post("/add-product", (req, res) => {
   );
 });
 
-// Route to fetch all iPhone products and related info as JSON
-app.get("/iphones", (req, res) => {
-  // Join products, descriptions, and pricing tables
-  const query = `
-    SELECT * FROM products
-    JOIN product_descriptions ON products.product_id = product_descriptions.product_id
-    JOIN product_pricing ON products.product_id = product_pricing.product_id
-  `;
+// // Route to fetch all iPhone products and related info as JSON
+// app.get("/iphones", (req, res) => {
+//   // Join products, descriptions, and pricing tables
+//   const query = `
+//     SELECT * FROM products
+//     JOIN product_descriptions ON products.product_id = product_descriptions.product_id
+//     JOIN product_pricing ON products.product_id = product_pricing.product_id
+//   `;
 
-  connection.query(query, (err, rows) => {
-    if (err) {
-      console.error("Error fetching iPhone data:", err);
-      res.status(500).json({ error: "Failed to retrieve data" });
-    } else {
-      // Format and send the response as JSON
-      const iphones = { products: rows };
-      res.json(iphones);
-    }
-  });
-});
+//   connection.query(query, (err, rows) => {
+//     if (err) {
+//       console.error("Error fetching iPhone data:", err);
+//       res.status(500).json({ error: "Failed to retrieve data" });
+//     } else {
+//       // Format and send the response as JSON
+//       const iphones = { products: rows };
+//       res.json(iphones);
+//     }
+//   });
+// });

@@ -74,38 +74,38 @@
 <body>
   <div class="form-container">
     <h1>Add New Product</h1>
-    <form action="/add-product" method="POST">
+    <form action="http://localhost:3000/add-product" method="POST">
       <div class="form-group">
         <label for="product_url">Product URL</label>
-        <input type="text" id="product_url" name="product_url" required>
+        <input type="text" id="product_url" name="product_url" placeholder="Product URL" required>
       </div>
       <div class="form-group">
         <label for="product_name">Product Name</label>
-        <input type="text" id="product_name" name="product_name" required>
+        <input type="text" id="product_name" name="product_name" placeholder="Product Name" required>
       </div>
       <div class="form-group">
         <label for="product_brief_description">Brief Description</label>
-        <input type="text" id="product_brief_description" name="product_brief_description" required>
+        <input type="text" id="product_brief_description" name="product_brief_description" placeholder="Brief Description" required>
       </div>
       <div class="form-group">
         <label for="product_description">Full Description</label>
-        <textarea id="product_description" name="product_description" rows="5" required></textarea>
+        <input type="text" id="product_description" name="product_description" placeholder="Description" required>
       </div>
       <div class="form-group">
         <label for="product_img">Image URL</label>
-        <input type="text" id="product_img" name="product_img" required>
+        <input type="text" id="product_img" name="product_img" placeholder="Image URL" required>
       </div>
       <div class="form-group">
         <label for="product_link">Product Link</label>
-        <input type="text" id="product_link" name="product_link" required>
+        <input type="text" id="product_link" name="product_link" placeholder="Product Link" required>
       </div>
       <div class="form-group">
         <label for="price">Price</label>
-        <input type="number" id="price" name="price" step="0.01" required>
+        <input type="number" id="price" name="price" step="0.01" placeholder="Price" required>
       </div>
       <div class="form-group">
         <label for="price_range">Price Range</label>
-        <input type="text" id="price_range" name="price_range" required>
+        <input type="text" id="price_range" name="price_range" placeholder="Price Range" required>
       </div>
       <button type="submit">Add Product</button>
     </form>
@@ -119,7 +119,7 @@
       const data = Object.fromEntries(formData);
 
       try {
-        const response = await fetch('/add-product', {
+        const response = await fetch('http://localhost:3000/add-product', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

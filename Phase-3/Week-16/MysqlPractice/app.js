@@ -262,23 +262,23 @@ app.post("/add-product", (req, res) => {
   );
 });
 
-// // Route to fetch all iPhone products and related info as JSON
-// app.get("/iphones", (req, res) => {
-//   // Join products, descriptions, and pricing tables
-//   const query = `
-//     SELECT * FROM products
-//     JOIN product_descriptions ON products.product_id = product_descriptions.product_id
-//     JOIN product_pricing ON products.product_id = product_pricing.product_id
-//   `;
+// Route to fetch all iPhone products and related info as JSON
+app.get("/iphones", (req, res) => {
+  // Join products, descriptions, and pricing tables
+  const query = `
+    SELECT * FROM products
+    JOIN product_descriptions ON products.product_id = product_descriptions.product_id
+    JOIN product_pricing ON products.product_id = product_pricing.product_id
+  `;
 
-//   connection.query(query, (err, rows) => {
-//     if (err) {
-//       console.error("Error fetching iPhone data:", err);
-//       res.status(500).json({ error: "Failed to retrieve data" });
-//     } else {
-//       // Format and send the response as JSON
-//       const iphones = { products: rows };
-//       res.json(iphones);
-//     }
-//   });
-// });
+  connection.query(query, (err, rows) => {
+    if (err) {
+      console.error("Error fetching iPhone data:", err);
+      res.status(500).json({ error: "Failed to retrieve data" });
+    } else {
+      // Format and send the response as JSON
+      const iphones = { products: rows };
+      res.json(iphones);
+    }
+  });
+});

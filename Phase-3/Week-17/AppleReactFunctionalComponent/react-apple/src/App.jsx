@@ -1,12 +1,12 @@
-import Alert from "./functionalComponents/Alert"
-import Fifthsection from "./functionalComponents/Fifthsection"
-import Firstsection from "./functionalComponents/Firstsection"
-import Footer from "./functionalComponents/Footer"
-import Fourthsection from "./functionalComponents/Fourthsection"
-import Header from "./functionalComponents/Header"
-import Secondsection from "./functionalComponents/Secondsection"
-import Sixthsection from "./functionalComponents/Sixthsection"
-import Thirdsection from "./functionalComponents/Thirdsection"
+import Alert from "./components/Alert"
+import Fifthsection from "./components/Fifthsection"
+import Firstsection from "./components/Firstsection"
+import Footer from "./components/Footer"
+import Fourthsection from "./components/Fourthsection"
+import Header from "./components/Header"
+import Secondsection from "./components/Secondsection"
+import Sixthsection from "./components/Sixthsection"
+import Thirdsection from "./components/Thirdsection"
 
 
 function App() {

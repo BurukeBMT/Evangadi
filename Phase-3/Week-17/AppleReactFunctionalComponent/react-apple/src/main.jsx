@@ -2,8 +2,8 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import App from './App.jsx'
 import React from "react";
-import  "./commonResource/css/bootstrap.css";
-import "./commonResource/css/styles.css";
+import  "./assets/css/bootstrap.css";
+import "./assets/css/styles.css";
 
 
 

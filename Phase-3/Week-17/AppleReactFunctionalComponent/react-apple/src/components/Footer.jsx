@@ -1,5 +1,5 @@
 import React from 'react'
-import flag from "../commonResource/images/icons/16.png"
+import flag from "../assets/images/icons/16.png"
 
 function Footer() {
   return (

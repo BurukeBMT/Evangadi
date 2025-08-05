@@ -23,7 +23,7 @@ $(document).ready(function() {
     // Add toggle icons for mobile view
     if ($(window).width() <= 768) {
         $('.footer-links-wrapper h3').each(function() {
-            $(this).append('<span class="toggle-icon">+</span>');
+            $(this).append('<span class="toggle-icon"></span>');
         });
     }
 
@@ -38,7 +38,7 @@ $(document).ready(function() {
             // Add toggle icons for mobile
             if ($('.toggle-icon').length === 0) {
                 $('.footer-links-wrapper h3').each(function() {
-                    $(this).append('<span class="toggle-icon">+</span>');
+                    $(this).append('<span class="toggle-icon"></span>');
                 });
             }
         }

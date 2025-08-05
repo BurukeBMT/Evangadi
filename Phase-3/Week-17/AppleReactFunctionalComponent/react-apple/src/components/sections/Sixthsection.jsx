@@ -1,5 +1,5 @@
 import React from 'react'
-import arced from "../assets/images/icons/arcade.png"
+import arced from "../../assets/images/icons/arcade.png"
 
 function Sixthsection() {
   return (

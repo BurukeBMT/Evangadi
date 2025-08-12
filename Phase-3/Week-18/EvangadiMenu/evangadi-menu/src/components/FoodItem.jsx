@@ -1,6 +1,4 @@
 import {Component} from "react";
-
-
 class FoodItem extends Component {
   render() {
     const { title, price, img, desc } = this.props;

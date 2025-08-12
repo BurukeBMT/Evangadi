@@ -1,7 +1,7 @@
 import {Component} from "react";
-import FoodItem from "./FoodItem"; // Import the FoodItem component
-import menu from "../commonResources/data";
-import "../commonResources/style.css";
+import FoodItem from "./FoodItem";
+import menu from "../commonResources/JS/data";
+import "../commonResources/CSS/style.css";
 
 class MenuContainer extends Component {
   render() {

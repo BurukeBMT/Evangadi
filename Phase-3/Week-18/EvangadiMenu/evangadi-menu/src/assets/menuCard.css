@@ -1,0 +1,77 @@
+/* Card container styles */
+.foods-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 32px;
+  justify-content: center;
+}
+
+.menu-card {
+  width: 350px;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  padding: 20px;
+  margin-bottom: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.menu-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.menu-card h3 {
+  margin: 16px 0 8px;
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: #ffb300;
+}
+
+.menu-card .price {
+  background: #ffb300;
+  color: #fff;
+  border-radius: 6px;
+  padding: 4px 12px;
+  font-weight: bold;
+  font-size: 1rem;
+  margin-bottom: 8px;
+}
+
+.menu-card p {
+  margin: 8px 0;
+  font-size: 1rem;
+  color: #333;
+  transition: max-height 0.4s;
+  max-height: 3.2em;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.menu-card .show-more {
+  max-height: 500px;
+  -webkit-line-clamp: unset;
+}
+
+.menu-card button {
+  margin-top: 10px;
+  background: #ffb300;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 20px;
+  font-weight: bold;
+  font-size: 1rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  cursor: pointer;
+  transition: background 0.3s;
+}
+.menu-card button.active {
+  background: #e57300;
+}

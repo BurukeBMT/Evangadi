@@ -1,12 +1,12 @@
 import menu from "../commonResources/JS/data";
-import FoodItem from "./FoodItem";
 import "../commonResources/CSS/style.css";
 import "../assets/menuCard.css";
 import React, { useState } from "react";
-import MenuHeader from "./MenuHeader";
+
 
 function MenuContainer({ menu }) {
   const [showMoreArr, setShowMoreArr] = useState(Array(menu.length).fill(false));
+  
   const handleToggle = idx => {
     setShowMoreArr(arr => arr.map((v, i) => i === idx ? !v : v));
   };

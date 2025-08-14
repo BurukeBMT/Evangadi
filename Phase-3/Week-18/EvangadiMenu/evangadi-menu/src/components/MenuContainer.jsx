@@ -6,7 +6,7 @@ import React, { useState } from "react";
 
 function MenuContainer({ menu }) {
   const [showMoreArr, setShowMoreArr] = useState(Array(menu.length).fill(false));
-  
+  //toggle the visibility of the description text
   const handleToggle = idx => {
     setShowMoreArr(arr => arr.map((v, i) => i === idx ? !v : v));
   };

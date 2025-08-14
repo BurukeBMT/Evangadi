@@ -50,13 +50,11 @@
   max-height: 3.2em;
   overflow: hidden;
   display: -webkit-box;
-  -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
 }
 
 .menu-card .show-more {
   max-height: 500px;
-  -webkit-line-clamp: unset;
 }
 
 .menu-card button {
